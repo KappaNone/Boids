@@ -1,4 +1,4 @@
-# Boids (C)
+# Boidz
 
 A simple implementation of the [Boids](https://en.wikipedia.org/wiki/Boids) algorithm.
 
