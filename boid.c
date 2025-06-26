@@ -45,16 +45,15 @@ void boid_update(Boid *boid, int screen_width, int screen_height, int simulation
     boid->acceleration = Vector2Zero();
 }
 
-void boid_flock(Boid *target, Boids boids) {
+void boid_flock(Boid *target, Boid *boids, int boids_len, float alignment_factor, float cohesion_factor, float separation_factor, float view_radius) {
     Vector2 alignment = Vector2Zero();
     Vector2 cohesion = Vector2Zero();
     Vector2 separation = Vector2Zero();
 
-    int view_radius = 100;
     int total = 0;
 
-    for (int i = 0; i < boids.length; ++i) {
-        Boid other = boids.items[i];
+    for (int i = 0; i < boids_len; ++i) {
+        Boid other = boids[i];
         float d = Vector2Distance(target->position, other.position);
         if (target->id != other.id && d < view_radius) {
             Vector2 diff = Vector2Subtract(target->position, other.position);
@@ -67,6 +66,7 @@ void boid_flock(Boid *target, Boids boids) {
             total++;
         }
     }
+
     if (total > 0) {
         alignment = (Vector2){alignment.x/total, alignment.y/total};
         cohesion = (Vector2){cohesion.x/total, cohesion.y/total};
@@ -86,10 +86,9 @@ void boid_flock(Boid *target, Boids boids) {
         separation = vector_limit(separation, target->max_force);
     }
 
-    // scale one of the forces here
-    // separation = Vector2Scale(separation, 1.5);
-    // cohesion = Vector2Scale(cohesion, 1.5);
-    alignment = Vector2Scale(alignment, 1.5);
+    separation = Vector2Scale(separation, separation_factor);
+    cohesion = Vector2Scale(cohesion, cohesion_factor);
+    alignment = Vector2Scale(alignment, alignment_factor);
 
     target->acceleration = Vector2Add(target->acceleration, alignment);
     target->acceleration = Vector2Add(target->acceleration, cohesion);

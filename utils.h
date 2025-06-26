@@ -2,6 +2,11 @@
 #define UTILS_H
 #include "raylib.h"
 
+// typedef struct List {
+//     int length;
+//     void *items;
+// } List;
+
 float random_float(float from, float to);
 
 Vector2 random_unit_vector(void);

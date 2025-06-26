@@ -1,6 +1,6 @@
 TARGET = main
 
-SRC = main.c boid.c utils.c
+SRC = main.c boid.c utils.c slider.c
 OBJ = $(SRC:.c=.o)
 
 CC = gcc
