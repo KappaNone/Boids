@@ -19,7 +19,7 @@ Boid boid_create(int id, Vector2 position, Vector2 velocity, Vector2 acceleratio
 
 void boid_draw(Boid boid) {
     DrawCircleV(boid.position, boid.size, boid.color);
-    DrawCircleV(Vector2Add(boid.position, vector_set_length(boid.velocity, boid.size*0.5)), boid.size/2, WHITE);
+    DrawCircleV(Vector2Add(boid.position, vector_set_length(boid.velocity, boid.size*0.5)), boid.size*0.5, WHITE);
 }
 
 void boid_handle_edges(Boid *boid, int screen_width, int screen_height) {
