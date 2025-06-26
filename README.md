@@ -1,6 +1,6 @@
 # Boidz
 
-A simple implementation of the [Boids](https://en.wikipedia.org/wiki/Boids) algorithm.
+A simple implementation of the [Boids algorithm](https://en.wikipedia.org/wiki/Boids).
 
 ## Dependencies
 
