@@ -7,7 +7,7 @@ LDFLAGS = -lraylib -lm
 run: $(TARGET)
 	./$(TARGET)
 
-main: main.o boid.o utils.o slider.o
+$(TARGET): main.o boid.o utils.o slider.o
 	$(CC) main.o boid.o utils.o slider.o -o $(TARGET) $(CFLAGS) $(LDFLAGS)
 
 main.o: main.c boid.h utils.h slider.h
