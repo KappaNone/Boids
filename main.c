@@ -27,11 +27,11 @@ int main(void)
 
         boids[i] = boid_create(i, position, velocity, acceleration, max_force, speed, size, color);
     }
+    
     Slider alignment = slider_create("Alignment: ", (Rectangle){0, SCREEN_HEIGHT*0.7, 500, 50}, RED, -1.0, 2.0, 1.0, 25, 25, 4);
     Slider cohesion = slider_create("Cohesion: ", (Rectangle){0, alignment.rect.y + alignment.rect.height*1.5, 500, 50}, GREEN, -1.0, 2.0, 1.0, 25, 25, 4);
     Slider separation = slider_create("Separation: ", (Rectangle){0, cohesion.rect.y + cohesion.rect.height*1.5, 500, 50}, BLUE, -1.0, 2.0, 1.0, 25, 25, 4);
     Slider view_radius= slider_create("View radius: ", (Rectangle){0, separation.rect.y + separation.rect.height*1.5, 500, 50}, WHITE, 0.0, 500.0, 100.0, 25, 25, 4);
-
 
     while (!WindowShouldClose())
     {
@@ -64,7 +64,7 @@ int main(void)
 
         for (int i = 0; i < BOIDS; ++i) {
             boid_update(&boids[i], SCREEN_WIDTH, SCREEN_HEIGHT, SIMULATION_SPEED);
-            //boid_draw(boids[i]);
+            boid_draw(boids[i]);
         }
 
         slider_update(&alignment);
