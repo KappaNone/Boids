@@ -1,6 +1,4 @@
 #include "slider.h"
-#include "raylib.h"
-#include <stdio.h>
 
 Slider slider_create(char *title, Rectangle rect, Color color,  float min_value, float max_value, float init_value, int font_size, int margin, int padding) {
     Slider slider = {

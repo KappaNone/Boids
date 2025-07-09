@@ -1,7 +1,4 @@
-#include "raylib.h"
-#include "raymath.h"
 #include "boid.h"
-#include "utils.h"
 
 Boid boid_create(int id, Vector2 position, Vector2 velocity, Vector2 acceleration, float max_force, float speed, int size, Color color) {
     Boid boid = {
@@ -45,23 +42,23 @@ void boid_update(Boid *boid, int screen_width, int screen_height, int simulation
     boid->acceleration = Vector2Zero();
 }
 
-void boid_flock(Boid *target, Boid *boids, int boids_len, float alignment_factor, float cohesion_factor, float separation_factor, float view_radius) {
+void boid_flock(Boid *target, DA *boids, float alignment_factor, float cohesion_factor, float separation_factor, float view_radius) {
     Vector2 alignment = Vector2Zero();
     Vector2 cohesion = Vector2Zero();
     Vector2 separation = Vector2Zero();
 
     int total = 0;
 
-    for (int i = 0; i < boids_len; ++i) {
-        Boid other = boids[i];
-        float d = Vector2Distance(target->position, other.position);
-        if (target->id != other.id && d < view_radius) {
-            Vector2 diff = Vector2Subtract(target->position, other.position);
+    for (int i = 0; i < boids->used; ++i) {
+        Boid *other = da_get_typed(boids, i, Boid);
+        float d = Vector2Distance(target->position, other->position);
+        if (target->id != other->id && d < view_radius) {
+            Vector2 diff = Vector2Subtract(target->position, other->position);
             if (d > 0) diff = Vector2Scale(diff, 1/d);
 
             separation = Vector2Add(separation, diff);
-            alignment = Vector2Add(alignment, other.velocity);
-            cohesion = Vector2Add(cohesion, other.position);
+            alignment = Vector2Add(alignment, other->velocity);
+            cohesion = Vector2Add(cohesion, other->position);
 
             total++;
         }

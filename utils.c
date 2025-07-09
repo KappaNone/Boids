@@ -1,6 +1,4 @@
 #include "utils.h"
-#include "raylib.h"
-#include "raymath.h"
 
 float random_float(float from, float to) {
     int steps = 10000;

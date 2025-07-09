@@ -1,11 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
-#include "raylib.h"
 
-// typedef struct List {
-//     int length;
-//     void *items;
-// } List;
+#include "raylib.h"
+#include "raymath.h"
 
 float random_float(float from, float to);
 

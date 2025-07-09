@@ -1,6 +1,8 @@
 #ifndef SLIDER_H
 #define SLIDER_H
+
 #include "raylib.h"
+#include <stdio.h>
 
 typedef struct Slider {
     char *title;
